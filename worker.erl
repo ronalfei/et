@@ -5,9 +5,9 @@
 start(Times) ->
 %10.95.31.38:9507
 	St = os:timestamp(),
-	File1 = "/home/users/wangfei19/workbench/tcpclient/request.dat",
-	File2 = "/home/users/wangfei19/workbench/tcpclient/request.dat",
-	File3 = "/home/users/wangfei19/workbench/tcpclient/request.dat",
+	File1 = "/home/users/wangfei19/workbench/tcpclient/datafile",
+	File2 = "/home/users/wangfei19/workbench/tcpclient/datafile",
+	File3 = "/home/users/wangfei19/workbench/tcpclient/datafile",
 	File = [File1, File2, File3],
 	Payload = [get_data(F) || F<- File ],
 %10.58.176.19
