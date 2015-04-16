@@ -1,0 +1,4 @@
+[
+{workers, 32},
+{requests, 100}
+].
