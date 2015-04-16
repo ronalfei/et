@@ -1,2 +1,2 @@
 # et
-An easy Tcp Load Test tools
+An Easy Tcp Load Test tool
