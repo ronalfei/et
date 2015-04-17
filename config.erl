@@ -29,11 +29,8 @@ get(Key) ->
     Value = ets:lookup(config, Key),
     get(Key, Value).
 
-get(Key, []) ->
+get(_, []) ->
     none;
-get(Key, [H|T]) ->
-    case H of
-        {Key, Value} -> Value;
-        Other ->
-            get(Key, T)
-    end.
+get(_, [H|_]) ->
+    {_, Value} = H,
+    Value.
