@@ -23,6 +23,7 @@ start_worker(Number, Requests) ->
 
 
 start() ->
+    config:init(),
 	stats:init(),
 	Workers = config:get(workers),
 	Cid = spawn(collect, start, [Workers]), %启动一个收集器

@@ -5,13 +5,12 @@
 start(Times) ->
 %10.95.31.38:9507
 	St = os:timestamp(),
-	File1 = "/home/users/wangfei19/workbench/tcpclient/datafile",
-	File2 = "/home/users/wangfei19/workbench/tcpclient/datafile",
-	File3 = "/home/users/wangfei19/workbench/tcpclient/datafile",
-	File = [File1, File2, File3],
+    File = config:get('files'),
 	Payload = [get_data(F) || F<- File ],
 %10.58.176.19
-	{ok, Socket} = gen_tcp:connect({10,58,176,19}, 8081, [ {active, false}, binary, {packet, 0} ]),
+    Host = config:get('host'),
+    Port = config:get('port'),
+	{ok, Socket} = gen_tcp:connect(Host, Port, [ {active, false}, binary, {packet, 0} ]),
 	Failed = loop({Times, 0}, Socket, Payload),
 	close(Socket, Times, Failed),
 	Se = os:timestamp(),
@@ -23,14 +22,13 @@ start(Times) ->
 
 loop({0, Failed}, _Socket, _Payload) ->
 	Failed;
-
-loop({Times, Failed}, Socket, [P1, P2, P3]=Payload) ->
+loop({Times, Failed}, Socket, [H|T]=Payload) ->
 	send(Socket, Payload),
 	case gen_tcp:recv(Socket, 2) of  %% 2 second timeout
-		{ok, _Body} -> loop({Times-1, Failed}, Socket, [P2, P3, P1]);
+		{ok, _Body} -> loop({Times-1, Failed}, Socket, T++[H]);
 		_ -> 
 			io:format("=================timout~n"),
-			loop({Times-1, Failed+1}, Socket, [P2, P3, P1])
+			loop({Times-1, Failed+1}, Socket, T++[H])
 	end.
 	
 
