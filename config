@@ -1,4 +1,5 @@
-[
-{workers, 32},
-{requests, 100}
-].
+{workers, 32}.
+{requests, 100}.
+{files, ["/home/heyahao/private/et/datafile", "/home/heyahao/private/et/datafile", "/home/heyahao/private/et/datafile"]}.
+{host, {10,58,176,19}}.
+{port, 8081}.
