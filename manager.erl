@@ -15,7 +15,7 @@ start_worker(0, _Requests) ->
 start_worker(Number, Requests) ->
 	spawn(worker, start, [Requests]),%一个进程请求多少次后退出
 	receive
-	after 20 ->
+	after 1 ->
 		start_worker(Number-1, Requests)
 	end.
 
@@ -37,7 +37,7 @@ start_worker(Number) ->
 	Requests = config:get(requests),
 	spawn(worker, start, [Requests]),%一个进程请求多少次后退出
 	receive
-	after 20 ->
+	after 1 ->
 		start_worker(Number-1)
 	end.
 
