@@ -37,5 +37,6 @@ result() ->
 	%io:format("~n Min:~p, Max:~p ~n", [MinTime, MaxTime]),
 	Workers = config:get(workers),
     Requests = config:get(requests),
-	Qps = (Workers * Requests) / ( TotalTime / 1000),	%second
+    RequestFileCount = length(config:get(files)),
+	Qps = (Workers * Requests * RequestFileCount) / ( TotalTime / 1000),	%second
 	io:format("~n\e[1;41m Total Time: ~pms, Test Result Qps(econd): ~p,total failed counts:~p, failed rate: ~p% \e[0m\r\n", [TotalTime, Qps, FailedCount, (FailedCount*100)/(Workers * Requests)]).
