@@ -22,12 +22,12 @@ start(Times) ->
 
 loop({0, Failed}, _Socket, _Payload) ->
 	Failed;
-loop({Times, Failed}, Socket, [H|T]=Payload) ->
-	send(Socket, Payload),
-	case gen_tcp:recv(Socket, 2) of  %% 2 second timeout
+loop({Times, Failed}, Socket, [H|T]) ->
+	send(Socket, [H]),
+	case gen_tcp:recv(Socket, 200) of
 		{ok, _Body} -> loop({Times-1, Failed}, Socket, T++[H]);
-		_ -> 
-			io:format("=================timout~n"),
+		_Any -> 
+			io:format("=================timout=(~p)~n", [_Any]),
 			loop({Times-1, Failed+1}, Socket, T++[H])
 	end.
 	

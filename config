@@ -1,4 +1,5 @@
-[
-{workers, 32},
-{requests, 100}
-].
+{workers, 5}.
+{requests, 20}.
+{files, ["/home/users/wangfei19/workbench/tcpclient/normal/nshead_json.dat", "/home/users/wangfei19/workbench/tcpclient/normal/nshead_json.dat", "/home/users/wangfei19/workbench/tcpclient/normal/nshead_json.dat"]}.
+{host, {10,95,31,38}}.
+{port, 8877}.
