@@ -1,0 +1,5 @@
+{workers, 5}.
+{requests, 20}.
+{files, ["file1.dat", "file2.dat", "file3.dat"]}.
+{host, {192,168,1,122}}.
+{port, 8877}.
